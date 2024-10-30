@@ -1,0 +1,26 @@
+.purchased {
+    background-color: #C70039;
+    color: white;
+    border-radius: 5px;
+}
+
+.np {
+background-color: #27AE60;
+color: white;
+border-radius: 5px;
+}
+
+a{color: inherit;}
+
+button.btn-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.alert {
+    transition: opacity 0.5s ease-in-out !important;
+}
+
+.alert.hide {
+    opacity: 0;
+}

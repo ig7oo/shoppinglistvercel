@@ -1,0 +1,18 @@
+{% extends "listor/mall.html" %}
+{% load crispy_forms_tags %}
+{% block innehall %}
+    <div class="container py-5">
+        <form method="POST">
+            {% csrf_token %}
+            <fieldset>
+                <legend>{{status.status}} Radera Lista</legend>
+                {{ form|crispy }}
+                <h2>Vill du radera listan "{{ object.list_name }}"?</h2>
+            </fieldset>
+            <div>
+                <button class="btn btn-primary" type="submit">Radera</button>
+                <a class="btn btn-secondary" href="{% url 'lista-sida' object.id %}">Avbryt</a>
+            </div>
+        </form>
+    </div>
+{% endblock innehall %}

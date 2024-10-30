@@ -1,0 +1,43 @@
+{% extends 'listor/mall.html' %}
+
+{% block innehall %}
+    <div class="container py-5">
+        
+        {% for lista in listan %}
+            <h1>{{lista.list_name}}
+                {% if lista.list_user == user %}
+                    <a href="{% url 'lista-uppdatera' lista.id %}"><i class="bi bi-pencil-square"></i></a>
+                    <a href="{% url 'lista-radera' lista.id %}"><i class="bi bi-trash"></i></a>
+                    <a href="{% url 'vara-rensa' lista.id %}"><i class="bi bi-cart-x"></i></a>
+                    <a href="{% url 'lista-dela' lista.id %}"><i class="bi bi-share"></i></a>
+                {% endif %}
+
+            </h1>
+        {% endfor %}
+
+        <table>
+            <tr>
+                <th>Vara</th>
+                <th>Antal</th>
+                <th></th>
+                <th></th>
+            </tr>
+            {% for item in items %}
+            <tr class="{% if item.purchased %}purchased{% else %}np{% endif %}">
+                <td><form method="POST">{% csrf_token %}
+                    <input type="hidden" name="item_id" value="{{item.pk}}">
+                    <button type="submit" class="btn btn-link">{{item.item_name}}</button>
+                </form></td>
+                <td>{{item.amount}}</td>
+                <td><a href="{% url 'vara-uppdatera' item.id %}"><i class="bi bi-pencil-square"></i></a></td>
+                <td><a href="{% url 'vara-radera' item.id %}"><i class="bi bi-trash"></i></a></td>
+            </tr>
+            {% endfor %}
+        </table>
+        
+        {% for lista in listan %}
+            <a class="btn btn-primary" href="{% url 'vara-ny' lista.id %}">Ny vara</a>
+        {% endfor %}
+    
+    </div>
+{% endblock innehall %}

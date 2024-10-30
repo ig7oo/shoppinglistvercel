@@ -1,0 +1,19 @@
+{% extends 'listor/mall.html' %}
+
+{% block innehall %}
+  <h2>Radera varor</h2>
+  <p>Är du säker att du vill radera följande varor?</p>
+  <ul>
+    {% for obj in objects %}
+      <li>{{ obj.item_name }}</li>
+    {% empty %}
+      <li>Inga markerade varor.</li>
+    {% endfor %}
+  </ul>
+  <form method="post">
+    {% csrf_token %}
+    <input type="hidden" name="list_pk" value="{{ lista.listID }}">
+    <button type="submit">Radera</button>
+    <a href="{% url 'lista-sida' lista.listID %}">Avbryt</a>
+  </form>
+{% endblock innehall %}

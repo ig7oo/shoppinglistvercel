@@ -1,0 +1,22 @@
+{% extends 'listor/mall.html' %}
+{% load crispy_forms_tags %}
+
+{% block innehall %}
+    <div class="container py-5">
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>{{status.status}} Lista</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <button class="btn btn-primary" type="submit">Spara lista</button>
+
+    {% if status.status == 'Uppdatera' %}
+        <a class="btn btn-primary" href="{% url 'lista-sida' object.id %}">Ångra</a>
+    {% else %}
+        <a class="btn btn-primary" href="{% url 'lista-hem' %}">Ångra</a>
+    {% endif %}
+
+</form>
+    </div>
+    {% endblock innehall %}

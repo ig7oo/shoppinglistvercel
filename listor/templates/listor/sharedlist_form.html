@@ -1,0 +1,18 @@
+{% extends 'listor/mall.html' %}
+{% load crispy_forms_tags %}
+
+{% block innehall %}
+    <div class="container py-5">
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>{{status.status}} Dela lista</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <button class="btn btn-primary" type="submit">Dela lista</button>
+
+    <a class="btn btn-primary" href="{% url 'lista-sida' listID %}">Ångra</a>
+
+</form>
+    </div>
+    {% endblock innehall %}

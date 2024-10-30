@@ -1,0 +1,16 @@
+{% extends 'listor/mall.html' %}
+{% load crispy_forms_tags %}
+
+{% block innehall %}
+    <div class="container py-5">
+<form method="POST">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Logga in</legend>
+        {{ form|crispy }}
+    </fieldset>
+    <button class="btn btn-primary" type="submit">Logga in</button>
+</form>
+<p class="text-center">Har du inget konsto? <a href="{% url 'registrera' %}">Skapa konto</a></p>
+    </div>
+{% endblock innehall %}
