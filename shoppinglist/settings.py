@@ -79,8 +79,15 @@ WSGI_APPLICATION = 'shoppinglist.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRES_DATABASE', 'verceldb'),
+        'USER': os.environ.get('POSTGRES_USER', 'default'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD', 'EC8fKUtkG5PH'), 
+        'HOST': os.environ.get('POSTGRES_HOST', 'ep-billowing-fire-a4rge62r-pooler.us-east-1.aws.neon.tech'),
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
+        },
     }
 }
 
